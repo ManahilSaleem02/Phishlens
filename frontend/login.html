@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign in — PhishLens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fcf4ed; --bg2:#f8ece2; --surface:#fffaf6; --surface2:#f7eae0;
+    --line:#eedccf; --text:#534840; --muted:#9b8678; --faint:#bda996;
+    --danger:#df7a63; --accent:#cf8a6c;
+    --shadow:0 20px 50px -24px rgba(150,100,70,.30);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:radial-gradient(1100px 650px at 82% -12%,#fae1ce 0%,transparent 55%),
+               radial-gradient(900px 600px at -8% 112%,#f3e1ee 0%,transparent 52%),var(--bg);
+    color:var(--text);font-family:'Inter',system-ui,sans-serif;line-height:1.5;
+    min-height:100vh;display:grid;place-items:center;padding:24px;-webkit-font-smoothing:antialiased;
+  }
+  .card{
+    width:100%;max-width:400px;
+    background:linear-gradient(180deg,var(--surface),var(--bg2));
+    border:1px solid var(--line);border-radius:20px;padding:34px 30px 30px;
+    box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .card::before{content:"";position:absolute;inset:0 0 auto 0;height:1px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.6}
+  .brand{display:flex;align-items:center;gap:13px;margin-bottom:24px}
+  .logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#dd8c66,#eab48d);
+    display:grid;place-items:center;box-shadow:0 8px 22px -8px rgba(207,138,108,.6)}
+  .logo svg{width:25px;height:25px}
+  .brand h1{font-family:'Space Grotesk',sans-serif;font-size:21px;font-weight:700;letter-spacing:-.4px}
+  .brand p{font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:.3px}
+
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11.5px;letter-spacing:2px;
+    text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  h2{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;letter-spacing:-.4px;margin-bottom:22px}
+
+  label{display:block;font-size:12.5px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+    letter-spacing:.3px;margin-bottom:7px}
+  .field{margin-bottom:16px}
+  input{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--text);
+    font-family:'JetBrains Mono',monospace;font-size:14.5px;padding:14px 15px;border-radius:12px;outline:none;
+    transition:border-color .15s,box-shadow .15s}
+  input::placeholder{color:var(--faint)}
+  input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(207,138,108,.18)}
+
+  .btn{width:100%;background:linear-gradient(135deg,#d98a6c,#cf7959);color:#fff;border:none;border-radius:12px;
+    font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;padding:0 26px;cursor:pointer;
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:transform .12s,filter .15s;
+    min-height:50px;margin-top:6px}
+  .btn:hover{filter:brightness(1.08)}.btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+
+  .error{display:none;background:rgba(223,122,99,.12);border:1px solid rgba(223,122,99,.35);
+    color:var(--danger);font-size:13px;padding:11px 14px;border-radius:10px;margin-bottom:16px;
+    font-family:'JetBrains Mono',monospace}
+  .error.show{display:block}
+
+  .hint{margin-top:18px;background:var(--surface2);border:1px dashed var(--line);border-radius:11px;
+    padding:13px 15px;font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted)}
+  .hint .htitle{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);
+    margin-bottom:8px}
+  .hint .row{display:flex;justify-content:space-between;gap:10px;padding:2px 0}
+  .hint .row b{color:var(--text);font-weight:600}
+  .foot{margin-top:16px;font-size:11.5px;color:var(--faint);font-family:'JetBrains Mono',monospace;
+    text-align:center;line-height:1.7}
+  .spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;
+    border-radius:50%;animation:sp .6s linear infinite;display:inline-block}
+  @keyframes sp{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">
+      <div class="logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+      </div>
+      <div>
+        <h1>PhishLens</h1>
+        <p>URL Threat Scanner</p>
+      </div>
+    </div>
+
+    <div class="eyebrow">Secure access</div>
+    <h2>Sign in to continue</h2>
+
+    <div class="error" id="error"></div>
+
+    <form id="loginForm" autocomplete="on">
+      <div class="field">
+        <label for="username">Username</label>
+        <input id="username" name="username" type="text" placeholder="student" autocomplete="username" required autofocus />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" placeholder="••••••••" autocomplete="current-password" required />
+      </div>
+      <button class="btn" type="submit" id="submitBtn"><span id="btnText">Sign in</span></button>
+    </form>
+
+    <div class="hint">
+      <div class="htitle">Demo credentials</div>
+      <div class="row"><span>Username</span><b>student</b></div>
+      <div class="row"><span>Password</span><b>ccp123</b></div>
+    </div>
+
+    <div class="foot">Demo access for review · sessions expire after 8 hours</div>
+  </div>
+
+<script>
+const form = document.getElementById('loginForm');
+const errBox = document.getElementById('error');
+const btn = document.getElementById('submitBtn');
+const btnText = document.getElementById('btnText');
+
+function showError(msg){ errBox.textContent = msg; errBox.classList.add('show'); }
+
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  errBox.classList.remove('show');
+  const username = document.getElementById('username').value.trim();
+  const password = document.getElementById('password').value;
+  if(!username || !password){ showError('Enter both username and password.'); return; }
+
+  btn.disabled = true; btnText.innerHTML = '<span class="spin"></span>';
+  try{
+    const r = await fetch(location.origin + '/api/login', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({username, password}),
+    });
+    if(!r.ok){
+      const d = await r.json().catch(()=>({}));
+      throw new Error(d.detail || 'Login failed.');
+    }
+    // Cookie is set by the server; go to the dashboard.
+    location.href = '/';
+  }catch(err){
+    showError(err.message);
+    btn.disabled = false; btnText.textContent = 'Sign in';
+  }
+});
+</script>
+</body>
+</html>

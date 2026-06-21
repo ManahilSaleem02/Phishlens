@@ -1,0 +1,44 @@
+{
+  "generated_at": "2026-06-15",
+  "test_site_count": 70739,
+  "models": [
+    {
+      "name": "Random Forest",
+      "tag": "the method this app uses",
+      "blurb": "Asks hundreds of small yes/no questions about the address and votes on the answer.",
+      "accuracy": 96.3,
+      "phishing_caught_per_100": 92.6,
+      "false_alarms_per_100_safe": 0.9,
+      "is_best": true
+    },
+    {
+      "name": "Logistic Regression",
+      "tag": "a simple baseline",
+      "blurb": "A straightforward formula that weighs each clue once. Fast, but less flexible.",
+      "accuracy": 93.6,
+      "phishing_caught_per_100": 88.4,
+      "false_alarms_per_100_safe": 2.5,
+      "is_best": false
+    },
+    {
+      "name": "Gradient Boosting",
+      "tag": "an advanced alternative",
+      "blurb": "Builds on its own mistakes step by step. Powerful, a bit slower to train.",
+      "accuracy": 96.0,
+      "phishing_caught_per_100": 91.7,
+      "false_alarms_per_100_safe": 0.8,
+      "is_best": false
+    }
+  ],
+  "app_model": "Random Forest",
+  "breakdown": {
+    "of_100_phishing": {
+      "caught": 93,
+      "missed": 7
+    },
+    "of_100_safe": {
+      "passed": 99,
+      "false_alarm": 1
+    }
+  }
+}
